@@ -11,6 +11,7 @@
 
   </head>
   <body>
+
   <nav class="navbar navbar-expand navbar-light bg-light">
             <div class="nav navbar-nav">
                 <a class="nav-item nav-link active" href="#">
@@ -21,11 +22,9 @@
                 <a class="nav-item nav-link" href="cerrar.php">Cerrar Sesion</a>
             </div>
         </nav>
+        
   <div class="container">
     
-    <div class="row">
-      <div class="col-12">
-          <br>
-    <div class="row">
+
      
    

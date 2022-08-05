@@ -1,8 +1,11 @@
-<?php
-include ('../templates/cabecera.php');
-?>
-
+<?php include ('../templates/cabecera.php');?>
+<?php include ('../secciones/cursos.php');?>
+    <div class="row">
+      <div class="col-12">
+          <br>
+    <div class="row">
 <div class="col-md-5">
+  
     <form action="" method="">
     <div class="card">
     <div class="card-header">
@@ -51,6 +54,10 @@ include ('../templates/cabecera.php');
   </tbody>
 </table>
 
+</div>
+
+</div>
+</div>
 </div>
 
 
