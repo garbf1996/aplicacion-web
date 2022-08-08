@@ -10,7 +10,7 @@ class BD {
            // Conexion de base de datos
             $opciones [PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
             self::$instancia = new PDO('mysql:host=localhost;dbname=aplicacion_web', 'root', '', $opciones);
-            echo "Conectado a la base de datos";
+            
         }
 
         return self::$instancia;

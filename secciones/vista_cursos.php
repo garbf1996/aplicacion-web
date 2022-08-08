@@ -6,7 +6,7 @@
     <div class="row">
 <div class="col-md-5">
   
-    <form action="" method="">
+    <form action="" method="Post">
     <div class="card">
     <div class="card-header">
          Cursos
@@ -24,9 +24,9 @@
     class="form-control" name="nombre_curso" id="nombre_curso" aria-describedby="helpId" placeholder="Nombre del curso">
 </div>
 <div class="btn-group" role="group" aria-label="">
-<button type="button" class="btn btn-success">Agregar</button>
-<button type="button" class="btn btn-warning">Editar</button>
-<button type="button" class="btn btn-danger">Borrar</button>
+<button type="submit" name="accion" value="agregar" class="btn btn-success">Agregar</button>
+<button type="submit" name="accion" value="editar" class="btn btn-warning">Editar</button>
+<button type="submit" name="accion" value="borrar" class="btn btn-danger">Borrar</button>
 </div>
         </div>
     </div>
