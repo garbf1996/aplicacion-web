@@ -6,7 +6,6 @@ $conexionBD = BD::crearInstancia();
 $id=isset($_POST["id"])?$_POST["id"]:'';
 $nombre_curso=isset($_POST["nombre_curso"])?$_POST["nombre_curso"]:'';
 $accion=isset($_POST["accion"])?$_POST["accion"]:'';
-
 if($accion!==''){
     switch ($accion) {
         case 'agregar':
@@ -16,13 +15,27 @@ if($accion!==''){
             $consulta->execute();   
             break;
         case 'editar':
-            $sql="UPDATE cursos SET nombre_cursos='$nombre_curso' WHERE idcurso=$id";
-          
+            $sql="UPDATE cursos SET nombre_cursos=:nombre_cursos WHERE idcurso=:id";
+            $consulta=$conexionBD->prepare($sql);
+            $consulta->bindParam(':nombre_cursos',$nombre_curso);
+            $consulta->bindParam(':id',$id);
+            $consulta->execute();
             break;
         case 'borrar':
-            $sql="DELETE FROM cursos WHERE idcurso=$id";
+            $sql="DELETE FROM cursos WHERE idcurso=:id";
+            $consulta=$conexionBD->prepare($sql);
+            $consulta->bindParam(':id',$id);
+            $consulta->execute();
            
             break;
+        case 'Seleccionar':
+            $sql="SELECT * FROM cursos WHERE idcurso=$id";
+            $consulta=$conexionBD->prepare($sql);
+            $consulta->execute();
+            $curso=$consulta->fetch(PDO::FETCH_ASSOC);
+            $nombre_curso=$curso['nombre_cursos'];
+            break;
+            
     }
 }
 

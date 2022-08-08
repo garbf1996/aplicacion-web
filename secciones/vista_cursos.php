@@ -15,13 +15,13 @@
 <div class="mb-3">
   <label for="id" class="form-label">ID</label>
   <input type="text"
-    class="form-control" name="id" id="id" aria-describedby="helpId" placeholder="ID">
+    class="form-control" value="<?php echo $id; ?>" name="id" id="id" aria-describedby="helpId" placeholder="ID">
 </div>
 
 <div class="mb-3">
   <label for="nombre_curso" class="form-label">Nombre de curso</label>
   <input type="text"
-    class="form-control" name="nombre_curso" id="nombre_curso" aria-describedby="helpId" placeholder="Nombre del curso">
+    class="form-control"  name="nombre_curso" id="nombre_curso" aria-describedby="helpId" placeholder="Nombre del curso" value="<?php echo $nombre_curso; ?>">
 </div>
 <div class="btn-group" role="group" aria-label="">
 <button type="submit" name="accion" value="agregar" class="btn btn-success">Agregar</button>
@@ -49,7 +49,16 @@
     <tr>
       <td><?php  echo $curso['idcurso'];?> </td>
       <td><?php echo $curso['nombre_cursos'];?></td>
-      <td>Selecionar</td>
+      <td>
+     <form action="" method="post">
+      <input type="hidden" name="id" value="<?php echo $curso['idcurso'];?>">
+  
+      <button type="submit" name="accion" value="Seleccionar" class="btn btn-info">Seleccionar</button> 
+
+
+
+     </form>
+      </td>
     </tr>
 <?php } ?>  
   </tbody>
