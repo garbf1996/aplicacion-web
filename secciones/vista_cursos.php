@@ -45,12 +45,13 @@
     </tr>
   </thead>
   <tbody>
-   
+    <?php foreach ($listaCurso as $curso) { ?>
     <tr>
-      <td>1</td>
-      <td>Aplicacion web</td>
+      <td><?php  echo $curso['idcurso'];?> </td>
+      <td><?php echo $curso['nombre_cursos'];?></td>
       <td>Selecionar</td>
     </tr>
+<?php } ?>  
   </tbody>
 </table>
 
