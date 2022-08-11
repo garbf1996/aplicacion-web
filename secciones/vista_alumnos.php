@@ -1,8 +1,10 @@
 <?php include ('../templates/cabecera.php'); ?>
-<?php include ('../secciones/cursos.php');?>
+<?php include ('../secciones/alumnos.php');?>
+<br>
+<br>
 <div class="row">
     <div class="col-5">
-        <form action="" method="">
+        <form action="" method="POST">
          <div class="card">
             <div class="card-header">
                 Alumnos
@@ -22,17 +24,16 @@
             </div>
 
             <div class="mb-3">
-              <label for="apillodo" class="form-label"></label>
+              <label for="apellido" class="form-label"></label>
               <input type="text"
-                class="form-control" name="apillodo" id="apillodo" aria-describedby="helpId" placeholder="Apillodo de Alumnos">
+                class="form-control" name="apellido" id="apellido" aria-describedby="helpId" placeholder="Apillodo de Alumnos">
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Cursos del alumno:</label>
                 <select multiple class="form-select" name="cursos[]" id="cursos">
-                    <option selected>Selecione</option>
-                    <option value="">New Delhi</option>
-                    <option value="">Istanbul</option>
-                    <option value="">Jakarta</option>
+                   <?php foreach ($listaCursos as $curso) { ?>
+                        <option value="<?php echo $curso['idcurso']; ?>"><?php echo $curso['nombre_cursos']; ?></option>
+                     <?php } ?>
                 </select>
             </div>
                 
@@ -53,25 +54,42 @@
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Cursos</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
+          <?php foreach ($listaAlumnos as $alumno) { ?>
             <tr>
-                <td scope="row"></td>
-                <td></td>
-                <td></td>
+                <td><?php echo $alumno['idalumnos']; ?></td>
+                <td><?php echo $alumno['nombre']; ?></td>
+                <td><?php echo $alumno['apellido']; ?></td>
+                <td>
+                    <?php foreach ($alumno['cursos'] as $curso) { ?>
+                       <p class="text-primary">- <?php echo $curso['nombre_cursos']; ?></p> 
+                        
+
+                    <?php } ?>
+                </td>
+                <td>
+                <form action="" method="post">
+               <input type="hidden" name="id" value="<?php echo $curso['idalumnos'];?>">
+               <button type="submit" name="accion" value="Seleccionar" class="btn btn-info">Seleccionar</button> 
+               </form>
+                </td>
             </tr>
-            <tr>
-                <td scope="row"></td>
-                <td></td>
-                <td></td>
-            </tr>
+            <?php } ?>
         </tbody>
     </table>
     
     </div>
     </div>
 </div>
+<link href="https://cdn.jsdelivr.net/npm/tom-select@2.1.0/dist/css/tom-select.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.1.0/dist/js/tom-select.complete.min.js"></script>
+<script>
+    new TomSelect('#cursos');
 
+</script>
 <?php include ('../templates/pie.php');?>
