@@ -13,6 +13,8 @@ $curso=isset($_POST["cursos"])?$_POST["cursos"]:'';
 
 $accion=isset($_POST["accion"])?$_POST["accion"]:'';
 
+
+
 if($accion!==''){
     switch ($accion) {
         case 'agregar':
@@ -32,25 +34,61 @@ if($accion!==''){
             }
             break;
         case 'editar':
-            $sql="UPDATE cursos SET nombre_cursos=:nombre_cursos WHERE idcurso=:id";
+            $sql="UPDATE alumnos SET nombre=:nombre, apellido=:apellido WHERE idalumnos=:id";
             $consulta=$conexionBD->prepare($sql);
-            $consulta->bindParam(':nombre_cursos',$nombre_curso);
+            $consulta->bindParam(':nombre',$nombre);
+            $consulta->bindParam(':apellido',$apellido);
             $consulta->bindParam(':id',$id);
             $consulta->execute();
+              
+            if(!empty($curso)){
+                $sql="DELETE FROM alumno_cursos WHERE idalumnos=:id";
+                $consulta=$conexionBD->prepare($sql);
+                $consulta->bindParam(':id',$id);
+                $consulta->execute();
+                
+                foreach ($curso as $curso) {
+                    $sql="INSERT INTO alumno_cursos (idalumnos,idcurso) VALUES (:idalumno,:idcurso)";
+                    $consulta=$conexionBD->prepare($sql);
+                    $consulta->bindParam(':idalumno',$id);
+                    $consulta->bindParam(':idcurso',$curso);
+                    $consulta->execute();
+                }
+
+            }
+
             break;
         case 'borrar':
-            $sql="DELETE FROM cursos WHERE idcurso=:id";
+            $sql="DELETE FROM alumnos WHERE idalumnos=:id";
             $consulta=$conexionBD->prepare($sql);
             $consulta->bindParam(':id',$id);
             $consulta->execute();
+
            
             break;
         case 'Seleccionar':
-            $sql="SELECT * FROM cursos WHERE idcurso=$id";
+            $sql="SELECT * FROM alumnos WHERE idalumnos=$id";
             $consulta=$conexionBD->prepare($sql);
             $consulta->execute();
-            $curso=$consulta->fetch(PDO::FETCH_ASSOC);
-            $nombre_curso=$curso['nombre_cursos'];
+            $alumno=$consulta->fetch(PDO::FETCH_ASSOC);
+            $nombre=$alumno['nombre'];
+            $apellido=$alumno['apellido'];
+         
+            $sql="SELECT cursos.idcurso FROM 
+            alumno_cursos INNER JOIN 
+            cursos ON cursos.idcurso=alumno_cursos.idcurso 
+            WHERE alumno_cursos.idalumnos=:idalumno";
+            $consulta=$conexionBD->prepare($sql);
+            $consulta->bindParam(':idalumno',$id);
+            $consulta->execute();
+            $cursosAlumnos=$consulta->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach($cursosAlumnos  as $curso){
+                $cursos[]=$curso['idcurso'];
+              
+            }
+
+
             break;
             
     }

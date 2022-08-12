@@ -14,25 +14,37 @@
             <div class="mb-3">
               <label for="id" class="form-label"></label>
               <input type="text"
-                class="form-control" name="id" id="id" aria-describedby="helpId" placeholder="ID">
+                class="form-control" name="id" value="<?php echo $id; ?>" id="id" aria-describedby="helpId" placeholder="ID">
             </div>
              
             <div class="mb-3">
               <label for="nombre" class="form-label"></label>
               <input type="text"
-                class="form-control" name="nombre" id="nombre" aria-describedby="helpId" placeholder="Nombre de Alumnos">
+                class="form-control" name="nombre" value="<?php echo $nombre; ?>" id="nombre" aria-describedby="helpId" placeholder="Nombre de Alumnos">
             </div>
 
             <div class="mb-3">
               <label for="apellido" class="form-label"></label>
               <input type="text"
-                class="form-control" name="apellido" id="apellido" aria-describedby="helpId" placeholder="Apillodo de Alumnos">
+                class="form-control" name="apellido" id="apellido" value="<?php echo $apellido; ?>" aria-describedby="helpId" placeholder="Apillodo de Alumnos">
             </div>
+
             <div class="mb-3">
                 <label for="" class="form-label">Cursos del alumno:</label>
                 <select multiple class="form-select" name="cursos[]" id="cursos">
                    <?php foreach ($listaCursos as $curso) { ?>
-                        <option value="<?php echo $curso['idcurso']; ?>"><?php echo $curso['nombre_cursos']; ?></option>
+                        <option
+                            <?php
+                            if(!empty($cursos)):
+                                if(in_array($curso['idcurso'],$cursos)):
+                                    echo 'selected';
+                                endif;
+                            endif;
+                            ?>
+                         value="<?php echo $curso['idcurso']; ?>">
+                         <?php echo $curso['nombre_cursos']; ?>
+                        </option>
+                        
                      <?php } ?>
                 </select>
             </div>
@@ -73,8 +85,9 @@
                     <?php } ?>
                 </td>
                 <td>
+
                 <form action="" method="post">
-               <input type="hidden" name="id" value="<?php echo $curso['idalumnos'];?>">
+               <input type="hidden" name="id" value="<?php echo $alumno['idalumnos'];?>">
                <button type="submit" name="accion" value="Seleccionar" class="btn btn-info">Seleccionar</button> 
                </form>
                 </td>
