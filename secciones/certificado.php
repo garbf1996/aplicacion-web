@@ -16,10 +16,4 @@ $stmt->bindParam(':idcurso',$idcurso);
 $stmt->execute();
 $alumno=$stmt->fetch(PDO::FETCH_ASSOC);
 print_r($alumno);
-
-
-
-
-
-
 ?>
