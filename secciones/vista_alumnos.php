@@ -79,9 +79,9 @@
                 <td><?php echo $alumno['apellido']; ?></td>
                 <td>
                     <?php foreach ($alumno['cursos'] as $curso) { ?>
-                       <p class="text-primary">- <?php echo $curso['nombre_cursos']; ?></p> 
-                        
-
+                      -<a href="certificado.php?idcurso=<?php echo $curso['idcurso'];?> &idalumnos=<?php echo $alumno['idalumnos'];?>">
+                      <?php echo $curso['nombre_cursos']; ?>
+                    </a><br>
                     <?php } ?>
                 </td>
                 <td>
