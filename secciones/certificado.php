@@ -3,18 +3,19 @@ require('../pdf/fpdf.php');
 include_once '../config/bd.php';
 $conexion=BD::crearInstancia();
 
-//duncion para fuentes
-function agregarTexto($pdf,$texto,$x,$y,$size=10,$fuente,$salign='L',$sr=0,$g=0,$b=0){
-    $pdf->SetFont($fuente,$size,$salign);
-    $pdf->SetXY($x,$y);
-    $pdf->SetTextColor($sr,$g,$b);
-    $pdf->MultiCell(0,10,$texto,0,0,$salign);
-   //$pdf->Text($x,$y,$texto);
+function agregarTexto($pdf,$texto,$posicionHorizontal,$posicionVertical,$alineacion,$f,$t,$s,$r,$g,$b) 
+{
+    $pdf->SetFont($f,$t,$s);	
+    $pdf->SetXY($posicionHorizontal,$posicionVertical);
+    $pdf->SetTextColor($r,$g,$b);
+    $pdf->Cell(0,10,$texto,0,0,$alineacion);	
 }
 
-function agregarImagen($pdf,$image,$x,$y){
-    $pdf->Image($image,$x,$y,0);
+function AgregarImagen($pdf, $imagen, $x, $y) {
+$pdf->Image($imagen,$x,$y,0);	
 }
+
+
 
 $idcurso=isset($_GET['idcurso'])?$_GET['idcurso']:'';
 $idalumno=isset($_GET['idalumnos'])?$_GET['idalumnos']:'';
@@ -28,9 +29,13 @@ $stmt->bindParam(':idcurso',$idcurso);
 $stmt->execute();
 $alumno=$stmt->fetch(PDO::FETCH_ASSOC);
 
-$pdf = new FPDF("L","mm","A4",array(254,194));
+$pdf = new FPDF('L','mm',array(254,190));
 $pdf->AddPage();
-$pdf->SetFont('arial','B',16);
+$pdf->SetFont('Arial','B',16);
+AgregarImagen($pdf,'../img/certificado_.jpg', 0,0);
+
+
 $pdf->Output();
+
 
 ?>
