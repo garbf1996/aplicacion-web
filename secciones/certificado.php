@@ -34,9 +34,9 @@ $pdf = new FPDF('L','mm',array(254,190));
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',16);
 AgregarImagen($pdf,'../img/certificado_.jpg', 0,0);
-agregarTexto($pdf,"Garber",60,70,'L','Helvetica',30,0,84,115);
-agregarTexto($pdf,"Sitio WEB",-190,115,'c','Helvetica',20,0,84,115);
-agregarTexto($pdf,"01/01/2022",-190,155,'c','Helvetica',11,0,84,115);
+agregarTexto($pdf,ucwords(utf8_decode($alumno['nombre']." ".$alumno['apellido'])),60,70,'L','Helvetica',30,0,84,115);
+agregarTexto($pdf,$alumno['nombre_cursos'],-190,115,'L','Helvetica',20,0,84,115);
+agregarTexto($pdf,date("Y-m-d"),-190,155,'c','Helvetica',11,0,84,115);
 $pdf->Output();
 
 

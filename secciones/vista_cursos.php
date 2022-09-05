@@ -12,7 +12,7 @@
          Cursos
 </div>
  <div class="card-body">
-<div class="mb-3">
+<div class="mb-3 d-none">
   <label for="id" class="form-label">ID</label>
   <input type="text"
     class="form-control" value="<?php echo $id; ?>" name="id" id="id" aria-describedby="helpId" placeholder="ID">

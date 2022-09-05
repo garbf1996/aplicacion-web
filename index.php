@@ -1,3 +1,20 @@
+<?php
+session_start();
+
+if($_POST){
+  $mesaje = 'Usuario o contraseña incorrectos';
+
+  if($_POST['usuario'] == 'develoteca'&& $_POST['password'] == 'admin'){
+    $_SESSION['usuario']=$_POST['usuario'];
+   
+    header('Location: secciones/index.php');
+}
+}
+?>
+
+
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,6 +25,8 @@
 
     <!-- Bootstrap CSS v5.2.0-beta1 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"  integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    
 
   </head>
   <body>
@@ -20,12 +39,20 @@
         <div class="col-md-4">
         </div>
         <div class="col-md-4">
-          <form action="secciones/index.php" method="post">
+          <form action="" method="post">
             <div class="card">
             <div class="card-header">
               Incio de Sescion
             </div>
             <div class="card-body">
+              <?php
+              if(isset($mesaje)){
+               echo '<div class="alert alert-danger" role="alert">
+                  <strong>'.$mesaje.'
+                </div>';
+                
+              }
+              ?>
               <div class="mb-3">
                 <label for="" class="form-label">Usuario</label>
                 <input type="text" class="form-control" name="usuario" id="usuario" aria-describedby="helpId" placeholder="Usuario">
@@ -33,7 +60,7 @@
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" name="contraseña" id="contraseña" aria-describedby="helpId" placeholder="Contraseña">
+                <input type="password" class="form-control" name="password" id="contraseña" aria-describedby="helpId" placeholder="Contraseña">
                 <small id="helpId" class="form-text text-muted">Escribe su contraseña</small>
               </div>
               <button type="submit" class="btn btn-primary">Iniciar Sesion</button>

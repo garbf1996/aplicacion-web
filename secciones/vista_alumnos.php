@@ -11,7 +11,7 @@
             </div>
             <div class="card-body">
 
-            <div class="mb-3">
+            <div class="mb-3 d-none">
               <label for="id" class="form-label"></label>
               <input type="text"
                 class="form-control" name="id" value="<?php echo $id; ?>" id="id" aria-describedby="helpId" placeholder="ID">
@@ -79,8 +79,9 @@
                 <td><?php echo $alumno['apellido']; ?></td>
                 <td>
                     <?php foreach ($alumno['cursos'] as $curso) { ?>
-                      -<a href="certificado.php?idcurso=<?php echo $curso['idcurso'];?> &idalumnos=<?php echo $alumno['idalumnos'];?>">
-                      <?php echo $curso['nombre_cursos']; ?>
+                      <a href="certificado.php?idcurso=<?php echo $curso['idcurso'];?> &idalumnos=<?php echo $alumno['idalumnos'];?>">
+                      <img src="../img/pdf.png" width="32" height="32" >
+                      <br> <?php echo $curso['nombre_cursos']; ?>
                     </a><br>
                     <?php } ?>
                 </td>
