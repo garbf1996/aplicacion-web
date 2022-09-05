@@ -36,7 +36,7 @@ $pdf->SetFont('Arial','B',16);
 AgregarImagen($pdf,'../img/certificado_.jpg', 0,0);
 agregarTexto($pdf,"Garber",60,70,'L','Helvetica',30,0,84,115);
 agregarTexto($pdf,"Sitio WEB",-190,115,'c','Helvetica',20,0,84,115);
-agregarTexto($pdf,"01/01/2022",-190,156,'c','Helvetica',11,0,84,115);
+agregarTexto($pdf,"01/01/2022",-190,155,'c','Helvetica',11,0,84,115);
 $pdf->Output();
 
 
